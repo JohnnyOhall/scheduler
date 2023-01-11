@@ -5,39 +5,38 @@ import { action } from "@storybook/addon-actions";
 
 import "index.scss";
 
-import Button from "components/Button.jsx";
-import DayListItem from "components/DayListItem.jsx";
-import DayList from "components/DayList.jsx";
-import InterviewerListItem from "components/InterviewerListItem.jsx";
-import InterviewerList from "components/InterviewerList.jsx";
+import Button from "components/Button";
+import DayListItem from "components/DayListItem";
+import DayList from "components/DayList";
+import InterviewerListItem from "components/InterviewerListItem";
+import InterviewerList from "components/InterviewerList";
+import Appointment from "components/Appointment";
+import Header from "components/Appointment/Header";
+import Empty from "components/Appointment/Empty";
+import Show from "components/Appointment/Show";
+import Confirm from "components/Appointment/Confirm";
+import Status from "components/Appointment/Status";
+import Error from "components/Appointment/Error";
 
 
 storiesOf( "Button", module )
-  .addParameters({
-    backgrounds: [{ name: "dark", value: "#222f3e", default: true }]
-  })
+  .addParameters({ backgrounds: [{ name: "dark", value: "#222f3e", default: true }] })
   .add( "Base", () => <Button>Base</Button> )
   .add( "Confirm", () => <Button confirm>Confirm</Button> )
   .add( "Danger", () => <Button danger>Cancel</Button> )
-  .add( "Clickable", () => (
-    <Button onClick={ action( "button-clicked" ) }>Clickable</Button>
-  ))
+  .add( "Clickable", () => <Button onClick={ action( "button-clicked" ) }>Clickable</Button>)
   .add( "Disabled", () => (
     <Button disabled onClick={ action( "button-clicked" ) }>
       Disabled
     </Button>
   ));
 
-storiesOf( "DayListItem", module ) //Initiates Storybook and registers our DayListItem component
-  .addParameters({
-    backgrounds: [{ name: "dark", value: "#222f3e", default: true }]
-  }) // Provides the default background color for our component
-  .add( "Unselected", () => <DayListItem name="Monday" spots={ 5 } /> ) // To define our stories, we call add() once for each of our test states to generate a story
+storiesOf( "DayListItem", module ) 
+  .addParameters({ backgrounds: [{ name: "dark", value: "#222f3e", default: true }] }) 
+  .add( "Unselected", () => <DayListItem name="Monday" spots={ 5 } /> )
   .add( "Selected", () => <DayListItem name="Monday" spots={ 5 } selected /> )
   .add( "Full", () => <DayListItem name="Monday" spots={ 0 } /> )
-  .add( "Clickable", () => (
-    <DayListItem name="Tuesday" setDay={ action( "setDay" )} spots={5} /> // action() allows us to create a callback that appears in the actions panel when clicked
-  ));
+  .add( "Clickable", () => <DayListItem name="Tuesday" setDay={ action( "setDay" )} spots={5} /> );
 
 const days = [
   {
@@ -61,15 +60,9 @@ storiesOf( "DayList", module )
   .addParameters({
     backgrounds: [{ name: "dark", value: "#222f3e", default: true }],
   })
-  .add( "Monday", () => (
-    <DayList days={ days } value={ "Monday" } onChange={ action( "setDay" )} />
-  ))
-  .add( "Tuesday", () => (
-    <DayList days={ days } value={ "Tuesday" } onChange={action( "setDay" )} />
-  ))
-  .add( "Wednesday", () => (
-    <DayList days={ days } value={ "Wednesday" } onChange={action( "setDay" )} />
-  ));
+  .add( "Monday", () => <DayList days={ days } value={ "Monday" } onChange={ action( "setDay" )} />)
+  .add( "Tuesday", () => <DayList days={ days } value={ "Tuesday" } onChange={action( "setDay" )} />)
+  .add( "Wednesday", () => <DayList days={ days } value={ "Wednesday" } onChange={action( "setDay" )} />);
 
 const interviewer = {
   id: 1,
@@ -78,9 +71,7 @@ const interviewer = {
 };
 
 storiesOf( "InterviewerListItem", module )
-  .addParameters({
-    backgrounds: [{ name: "dark", value: "#222f3e", default: true }]
-  })
+  .addParameters({ backgrounds: [{ name: "dark", value: "#222f3e", default: true }] })
   .add( "Unselected", () => (
     <InterviewerListItem
       id={ interviewer.id }
@@ -114,14 +105,8 @@ const interviewers = [
 ];
 
 storiesOf( "InterviewerList", module )
-  .addParameters({
-    backgrounds: [{ name: "dark", value: "#222f3e", default: true }]
-  })
-  .add( "Initial", () => (
-    <InterviewerList
-      interviewers={ interviewers }
-    />
-  ))
+  .addParameters({ backgrounds: [{ name: "dark", value: "#222f3e", default: true }] })
+  .add( "Initial", () => <InterviewerList interviewers={ interviewers } /> )
   .add( "Selected", () => (
     <InterviewerList
       interviewers={ interviewers }
@@ -134,3 +119,20 @@ storiesOf( "InterviewerList", module )
       onChange={ action( "setInterviewer" ) }
     />
   ));
+
+  storiesOf( "Appointment", module )
+  .addParameters({ backgrounds: [{ name: "white", value: "#fff", default: true }] })
+  .add( "Appointment", () => <Appointment /> )
+  .add( "Appointment with Time", () => <Appointment time='12pm'/> )
+  .add( "Header", () => <Header time='12pm'/> )
+  .add( "Empty", () => <Empty onAdd={ action( "onAdd" ) }/> )
+  .add( "Show", () => <Show onEdit={ action( "onEdit" ) } onDelete={ action( "onDelete" ) }/> )
+  .add( "Confirm", () => (
+    <Confirm 
+      message="Delete the appointment?" 
+      onConfirm={ action( "onConfirm" ) } 
+      onCancel={ action( "onCancel" ) }
+    />
+  ))
+  .add( "Status", () => <Status message="Deleting"/> )
+  .add( "Error", () => <Error message="Could not delete appointment." onClose={ action( "onClose" )}/>);
