@@ -1,5 +1,7 @@
+// ----------------- IMPORTS ----------------- //
+
 import React, { useState, useEffect } from "react";
-import { getAppointmentsForDay } from "helpers/selectors";
+import { getAppointmentsForDay, getInterview } from "helpers/selectors";
 
 import axios from "axios";
 import DayList from "./DayList";
@@ -9,14 +11,17 @@ import "components/Application.scss";
 
 
 export default function Application( props ) {
+  
+  // ----------------- STATES ----------------- //
+
   const [ state, setState ] = useState({
     day: "Monday",
     days: [ ],
     appointments: { }
   });
 
-  const setDay = day => setState( prev => ({ ...prev, day }))
-
+ 
+  // ----------------- SERVER PULL ----------------- //
   useEffect( () => {
     Promise.all([
       axios.get( '/api/days' ),
@@ -26,12 +31,31 @@ export default function Application( props ) {
       setState( prev => ({
         ...prev, 
         days: all[ 0 ].data, 
-        appointments: all[ 1 ].data
+        appointments: all[ 1 ].data,
+        interviewers: all[ 2 ].data
       }))
     });
   }, []);
 
+  
+  // ----------------- FUNCTIONS ----------------- //
+  const setDay = day => setState( prev => ({ ...prev, day }));
   const dailyAppointments = getAppointmentsForDay( state, state.day );
+  const appointments = getAppointmentsForDay(state, state.day);
+
+  const schedule = appointments.map( appointment => {
+    const interview = getInterview( state, appointment.interview ),
+      { id, time } = appointment;
+    
+    return (
+      <Appointment
+        key={ id }
+        id={ id }
+        time={ time }
+        interview={ interview }
+      />
+    );
+  });
 
   const appointmentsArr = dailyAppointments.map( appointment => {
     return (
@@ -42,6 +66,7 @@ export default function Application( props ) {
     ); 
   });
 
+  // ----------------- HTML ----------------- //
   return (
     <main className="layout">
       <section className="sidebar">
