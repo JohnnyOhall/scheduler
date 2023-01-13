@@ -5,13 +5,13 @@ export default function useVisualMode( initial ) {
   const [ history, setHistory ] = useState([ initial ]);
 
   const transition = ( mode, replace = false ) => {
-    if (replace) {
+    if ( replace ) {
       const splice = history => {
         history.splice( -1, 1, mode )
-        return history
+        return [ ...history ]
       }
 
-      setHistory( splice( [...history] ) )
+      setHistory( splice([ ...history ]) )
       setMode( mode )
       return
     }
@@ -23,14 +23,16 @@ export default function useVisualMode( initial ) {
 
   const back = () => {
     const pop = history => {
-      if (history.length === 1) return history
+      if ( history.length === 1 ) return [ ...history ]
       
       history.pop()
-      return history
+      return [ ...history ]
     };
 
-    setHistory( pop( history ) )
-    setMode( history[ history.length - 1 ])
+    const newHistory = pop([ ...history ])
+
+    setHistory( newHistory ) 
+    setMode( newHistory[ newHistory.length - 1 ])
     return
   };
 
