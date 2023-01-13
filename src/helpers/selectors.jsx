@@ -3,7 +3,7 @@ export function getAppointmentsForDay( state, day ) {
 
   if ( !filteredDays ) return [ ];
 
-  const output = filteredDays.appointments.map( id => state.appointments[ id ]);
+  const output = filteredDays.appointments.map( id => state.appointments[ id ] );
 
   return output;
 };
