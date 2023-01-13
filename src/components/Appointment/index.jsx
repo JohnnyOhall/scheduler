@@ -8,13 +8,13 @@ export default function Appointment( props ) {
   const { time, interview } = props;
 
   const EmptyOrShow = interview ?
-    <Show student={interview.student} interviewer={interview.interviewer} /> :
+    <Show student={ interview.student } interviewer={ interview.interviewer } /> :
     <Empty />;
   
   return (
     <article className="appointment">
-      <Header time={time} />
-      {EmptyOrShow}
+      <Header time={ time } />
+      { EmptyOrShow }
     </article>
   );
 }

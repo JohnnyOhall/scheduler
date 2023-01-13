@@ -1,5 +1,4 @@
 import React, { Fragment } from 'react'
-
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
 
@@ -37,7 +36,7 @@ storiesOf( "DayListItem", module )
   .add( "Unselected", () => <DayListItem name="Monday" spots={ 5 } /> )
   .add( "Selected", () => <DayListItem name="Monday" spots={ 5 } selected /> )
   .add( "Full", () => <DayListItem name="Monday" spots={ 0 } /> )
-  .add( "Clickable", () => <DayListItem name="Tuesday" setDay={ action( "setDay" )} spots={5} /> );
+  .add( "Clickable", () => <DayListItem name="Tuesday" setDay={ action( "setDay" )} spots={ 5 } /> );
 
 const days = [
   {
@@ -155,14 +154,14 @@ storiesOf( "InterviewerList", module )
   ))
   .add("Appointment Empty", () => (
     <Fragment>
-      <Appointment id={1} time="4pm" />
+      <Appointment id={ 1 } time="4pm" />
       <Appointment time="5pm" />
     </Fragment>
   ))
   .add("Appointment Booked", () => (
     <Fragment>
       <Appointment
-        id={1}
+        id={ 1 }
         time="4pm"
         interview={{ student: "Lydia Miller-Jones", interviewer }}
       />
