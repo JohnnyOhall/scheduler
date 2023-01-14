@@ -1,7 +1,7 @@
 // ----------------- IMPORTS ----------------- //
 
 import React, { useState, useEffect } from "react";
-import { getAppointmentsForDay, getInterview } from "helpers/selectors";
+import { getAppointmentsForDay, getInterview, getInterviewersForDay } from "helpers/selectors";
 
 import axios from "axios";
 import DayList from "./DayList";
@@ -36,12 +36,11 @@ export default function Application( props ) {
       }))
     });
   }, []);
-
   
   // ----------------- FUNCTIONS ----------------- //
   const setDay = day => setState( prev => ({ ...prev, day }));
-  const dailyAppointments = getAppointmentsForDay( state, state.day );
-  const appointments = getAppointmentsForDay(state, state.day);
+  const appointments = getAppointmentsForDay( state, state.day );
+  const interviewers = getInterviewersForDay( state, state.day );
 
   const schedule = appointments.map( appointment => {
     const interview = getInterview( state, appointment.interview ),
@@ -53,17 +52,9 @@ export default function Application( props ) {
         id={ id }
         time={ time }
         interview={ interview }
+        interviewers={ interviewers }
       />
     );
-  });
-
-  const appointmentsArr = dailyAppointments.map( appointment => {
-    return (
-      <Appointment
-        key={ appointment.id }
-        { ...appointment }
-      />
-    ); 
   });
 
   // ----------------- HTML ----------------- //
@@ -90,9 +81,9 @@ export default function Application( props ) {
         />
       </section>
       <section className="schedule">
-        { appointmentsArr }
+        { schedule }
         <Appointment key="last" time="5pm" />
       </section>
     </main>
   );
-}
+};
