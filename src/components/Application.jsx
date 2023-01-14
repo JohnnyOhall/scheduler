@@ -13,7 +13,6 @@ import "components/Application.scss";
 export default function Application( props ) {
   
   // ----------------- STATES ----------------- //
-
   const [ state, setState ] = useState({
     day: "Monday",
     days: [ ],
