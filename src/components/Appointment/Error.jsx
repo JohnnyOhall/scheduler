@@ -1,5 +1,4 @@
 import React from "react";
-// import "components/Appointment/**STYLE**.scss";
 
 export default function Error( props ) {
   const { message, onClose } = props;

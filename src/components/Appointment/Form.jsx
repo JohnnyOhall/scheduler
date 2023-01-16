@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
+
 import InterviewerList from "components/InterviewerList";
 import Button from "components/Button";
-// import "components/Appointment/**STYLE**.scss"; <---- uncomment this if style needed
 
 export default function Form(props) {
   const { student, interviewer, interviewers, onSave, onCancel } = props,
