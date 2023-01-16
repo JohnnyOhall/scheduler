@@ -6,14 +6,24 @@ import Empty from "./Empty";
 import Form from "./Form";
 import Status from "./Status";
 import useVisualMode from "hooks/useVisualMode";
+import Confirm from "./Confirm";
 
 import "components/Appointment/styles.scss";
 
-const EMPTY = "EMPTY", SHOW = "SHOW", CREATE = "CREATE", SAVING = "SAVING";
+const EMPTY = "EMPTY", SHOW = "SHOW", CREATE = "CREATE", 
+  SAVING = "SAVING", REMOVING = "REMOVING", CONFIRM = "CONFIRM";
 
 export default function Appointment( props ) {
-  const { time, interview, interviewers, bookInterview, id } = props,
-    { mode, transition, back } = useVisualMode( interview ? SHOW : EMPTY );
+  const { 
+    time, 
+    interview, 
+    interviewers, 
+    bookInterview, 
+    id, 
+    cancelInterview 
+  } = props;
+
+  const { mode, transition, back } = useVisualMode( interview ? SHOW : EMPTY );
   
   function save( name, interviewer ) {
     const interview = {
@@ -24,9 +34,20 @@ export default function Appointment( props ) {
     transition( SAVING )
     
     bookInterview( id, interview )
-      .then(res => transition( SHOW ))
+      .then( res => transition( SHOW ) )
   };
-  
+
+  function deleteApp() {
+    const interview = {
+      student: '',
+      interviewer: null
+    }
+
+    transition( REMOVING )
+    cancelInterview( id, interview)
+      .then( res => transition( EMPTY ) )
+  }
+
   return (
     <article className="appointment">
       <Header time={ time } />
@@ -35,6 +56,7 @@ export default function Appointment( props ) {
         <Show
           student={ interview.student }
           interviewer={ interview.interviewer }
+          onDelete={ () => transition( CONFIRM ) } 
         />
       )}
       { mode === CREATE && (
@@ -47,6 +69,13 @@ export default function Appointment( props ) {
         />
       )}
       { mode === SAVING && <Status message={ 'Saving' } /> }
+      { mode === REMOVING && <Status message={ 'Removing' } /> }
+      { mode === CONFIRM && (
+        <Confirm 
+          message={ `Are you sure you'd like to delete?` }
+          onConfirm={ deleteApp }
+          onCancel={ back }
+        />)}
     </article>
   );
 }
