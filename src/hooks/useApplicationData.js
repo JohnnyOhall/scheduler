@@ -1,3 +1,4 @@
+// ----------------- EXTERNAL IMPORTS ----------------- //
 import { useState, useEffect } from "react";
 import axios from "axios";
 
@@ -25,7 +26,8 @@ export default function useApplicationData() {
       }))
     });
   }, []);
-    
+  
+  // ----------------- FUNCTIONS ----------------- //
   const setDay = day => setState( prev => ({ ...prev, day }));
 
   const bookInterview = (id, interview) => {
@@ -40,7 +42,7 @@ export default function useApplicationData() {
       [ id ]: appointment
     };
 
-    return axios.put( `/api/appointments/${appointment.id}`, { interview })
+    return axios.put( `/api/appointments/${id}`, { interview })
     .then( () => setState({ ...state, appointments }) )
   }
 

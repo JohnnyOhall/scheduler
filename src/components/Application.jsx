@@ -1,5 +1,4 @@
 // ----------------- EXTERNAL IMPORTS ----------------- //
-
 import React from "react";
 
 // ----------------- HELPER FUNCTIONS  ----------------- // 
@@ -31,22 +30,23 @@ export default function Application( props ) {
   // ----------------- FUNCTIONS ----------------- //
   const interviewers = getInterviewersForDay( state, state.day );
 
-  const appointments = getAppointmentsForDay( state, state.day ).map( appointment => {
-    const interview = getInterview( state, appointment.interview ),
-      { id, time } = appointment;
+  const appointments = getAppointmentsForDay( state, state.day )
+    .map( appointment => {
+      const interview = getInterview( state, appointment.interview ),
+        { id, time } = appointment;
     
-    return (
-      <Appointment
-        key={ id }
-        id={ id }
-        time={ time }
-        interview={ interview }
-        interviewers={ interviewers }
-        bookInterview={ bookInterview }
-        cancelInterview={ cancelInterview }
-      />
-    );
-  });
+      return (
+        <Appointment
+          key={ id }
+          id={ id }
+          time={ time }
+          interview={ interview }
+          interviewers={ interviewers }
+          bookInterview={ bookInterview }
+          cancelInterview={ cancelInterview }
+        />
+      );
+    });
 
   // ----------------- HTML ----------------- //
   return (
