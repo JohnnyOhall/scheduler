@@ -11,7 +11,8 @@ import Confirm from "./Confirm";
 import "components/Appointment/styles.scss";
 
 const EMPTY = "EMPTY", SHOW = "SHOW", CREATE = "CREATE", 
-  SAVING = "SAVING", REMOVING = "REMOVING", CONFIRM = "CONFIRM";
+  SAVING = "SAVING", REMOVING = "REMOVING", CONFIRM = "CONFIRM",
+  EDIT = "EDIT";
 
 export default function Appointment( props ) {
   const { 
@@ -57,6 +58,16 @@ export default function Appointment( props ) {
           student={ interview.student }
           interviewer={ interview.interviewer }
           onDelete={ () => transition( CONFIRM ) } 
+          onEdit={ () => transition( EDIT ) }
+        />
+      )}
+      { mode === EDIT && (
+        <Form 
+          student={ interview.student }
+          interviewer={ interview.interviewer.id }
+          interviewers={ interviewers }
+          onSave={ save } 
+          onCancel={ back }
         />
       )}
       { mode === CREATE && (
