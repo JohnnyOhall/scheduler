@@ -44,13 +44,8 @@ export default function Appointment( props ) {
   };
 
   const destroy = () => {
-    const interview = {
-      student: '',
-      interviewer: null
-    };
-
     transition( REMOVING, true )
-    cancelInterview( id, interview )
+    cancelInterview( id )
       .then( () => transition( EMPTY ) )
       .catch( err => {
         errorMsg = 
