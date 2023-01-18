@@ -45,6 +45,7 @@ export default function Appointment( props ) {
 
   const destroy = () => {
     transition( REMOVING, true )
+
     cancelInterview( id )
       .then( () => transition( EMPTY ) )
       .catch( err => {
@@ -56,7 +57,7 @@ export default function Appointment( props ) {
   };
 
   return (
-    <article className="appointment">
+    <article className="appointment" data-testid="appointment">
       <Header time={ time } />
       { mode === EMPTY && <Empty onAdd={ () => transition( CREATE ) } /> }
       { mode === SHOW && (
@@ -94,8 +95,20 @@ export default function Appointment( props ) {
           onCancel={ back }
         />
       )}
-      { mode === ERROR_SAVE && <Error type='ERROR SAVING' message={ errorMsg } onClose={ back } /> }
-      { mode === ERROR_DELETE && <Error type='ERROR DELETING' message={ errorMsg } onClose={ back } /> }
+      { mode === ERROR_SAVE && (
+        <Error 
+          type='ERROR SAVING' 
+          message={ errorMsg } 
+          onClose={ back } 
+        /> 
+      )}
+      { mode === ERROR_DELETE && (
+        <Error 
+          type='ERROR DELETING' 
+          message={ errorMsg } 
+          onClose={ back } 
+        /> 
+      )}
     </article>
   );
 }
