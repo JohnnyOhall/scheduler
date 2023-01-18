@@ -16,7 +16,7 @@ const EMPTY = "EMPTY", SHOW = "SHOW", CREATE = "CREATE",
   SAVING = "SAVING", REMOVING = "REMOVING", CONFIRM = "CONFIRM",
   EDIT = "EDIT", ERROR_SAVE = "ERROR_SAVE", ERROR_DELETE = 'ERROR_DELETE';
   
-let errorMsg; // Error message handling return
+let errorMsg = ''; // Error message handling return
 
 export default function Appointment( props ) {
   
@@ -38,7 +38,7 @@ export default function Appointment( props ) {
       .catch( err => {
         errorMsg = 
           `Error Code: ${ err.response.status }, 
-            Message: ${ err.response.statusText }`
+            Message: ${ err.response.statusText }` 
         transition( ERROR_SAVE, true )
       });
   };
