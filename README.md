@@ -21,3 +21,10 @@ npm test
 ```sh
 npm run storybook
 ```
+## Running Cypress
+
+run config.xlaunch file found in the file directory (root)
+
+```sh
+npm run cypress
+```
