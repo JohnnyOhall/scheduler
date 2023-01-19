@@ -1,4 +1,9 @@
-import React from "react";
+/*
+EMPTY COMPONENT: THIS COMPONENT DISPLAYS AN ADD BUTTON (+) FOR BOOKING A
+  NEW APPOINTMENT ON AN EMPTY TIME-SLOT
+*/
+
+import React from "react"; // EXTERNAL IMPORTS
 
 export default function Empty( props ) {
   const { onAdd } = props;
@@ -13,4 +18,4 @@ export default function Empty( props ) {
       />
     </main>
   );
-}
+};

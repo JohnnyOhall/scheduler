@@ -1,5 +1,9 @@
-// ----------------- EXTERNAL IMPORTS ----------------- //
-import React from "react";
+/*
+APPLICATION COMPONENT: USED TO DISPLAY THE ENTIRE APPLICATION
+*/
+
+
+import React from "react"; // EXTERNAL IMPORTS
 
 // ----------------- HELPER FUNCTIONS  ----------------- // 
 import { 
@@ -12,11 +16,9 @@ import {
 import DayList from "./DayList";
 import Appointment from "./Appointment";
 
-// ----------------- HOOKS  ----------------- // 
-import useApplicationData from "hooks/useApplicationData";
+import useApplicationData from "hooks/useApplicationData"; // HOOK IMPORTS
 
-// ----------------- STYLING  ----------------- // 
-import "components/Application.scss";
+import "components/Application.scss"; // STYLING IMPORTS
 
 
 export default function Application( props ) {

@@ -1,6 +1,13 @@
+/*
+INTERVIEW LIST ITEM COMPONENT: USED TO DISPLAY DATA FOR EACH INDIVIDUAL 
+  INTERVIEW ITEM IN THE MAIN APPLICATION DISPLAY
+*/
+
+// ------------- EXTERNAL IMPORTS --------------- //
 import React from "react";
 import classNames from "classnames";
-import "components/InterviewerListItem.scss";
+
+import "components/InterviewerListItem.scss"; // STYLE IMPORTS
 
 
 export default function InterviewerListItem( props ) {
@@ -20,4 +27,4 @@ export default function InterviewerListItem( props ) {
       { selected && name }
     </li>
   );
-}
+};

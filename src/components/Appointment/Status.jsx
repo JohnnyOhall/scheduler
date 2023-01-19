@@ -1,4 +1,8 @@
-import React from "react";
+/*
+STATUS COMPONENT: USED TO DISPLAY LOADING SCREENS (SAVING, REMOVING ETC...)
+*/
+
+import React from "react"; // EXTERNAL IMPORTS
 
 export default function Status( props ) {
   const { message } = props;

@@ -1,9 +1,15 @@
+/*
+INTERVIEW LIST COMPONENT: USED TO DISPLAY EACH INTERVIEW ITEM IN 
+  THE MAIN APPLICATION DISPLAY
+*/
+
+// ------------- EXTERNAL IMPORTS --------------- //
 import React from "react";
 import PropTypes from 'prop-types'; 
 
-import InterviewerListItem from "./InterviewerListItem";
+import InterviewerListItem from "./InterviewerListItem"; // COMPONENT IMPORTS
 
-import "components/InterviewerList.scss";
+import "components/InterviewerList.scss"; // STYLE IMPORTS
 
 
 const InterviewerList = props => {

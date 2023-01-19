@@ -1,4 +1,8 @@
-import React from "react";
+/*
+SHOW COMPONENT: USED TO DISPLAY BOOKED APPOINTMENTS
+*/
+
+import React from "react"; // EXTERNAL IMPORTS
 
 export default function Show( props ) {
   const { student, interviewer, onEdit, onDelete } = props;
@@ -30,4 +34,4 @@ export default function Show( props ) {
       </section>
     </main>
   );
-}
+};

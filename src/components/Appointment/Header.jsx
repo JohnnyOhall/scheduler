@@ -1,4 +1,8 @@
-import React from "react";
+/*
+HEADER COMPONENT: DISPLAY MAIN PAGE HEADER
+*/
+
+import React from "react"; // EXTERNAL IMPORTS
 
 export default function Header( props ) {
   const { time } = props;
@@ -9,4 +13,4 @@ export default function Header( props ) {
       <hr className="appointment__separator" />
     </header>
   );
-}
+};

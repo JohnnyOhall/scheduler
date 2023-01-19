@@ -1,5 +1,10 @@
-import React from "react";
+/*
+APPOINTMENT INDEX: USED TO COMPILE ALL APPOINTMENT COMPONENTS
+*/
 
+import React from "react"; // EXTERNAL IMPORTS
+
+// ----------- COMPONENT IMPORTS ------------- //
 import Header from "./Header";
 import Show from "./Show";
 import Empty from "./Empty";
@@ -9,7 +14,7 @@ import useVisualMode from "hooks/useVisualMode";
 import Confirm from "./Confirm";
 import Error from "./Error";
 
-import "components/Appointment/styles.scss";
+import "components/Appointment/styles.scss"; // STYLE IMPORTS
 
 // ------------------ MODES ------------------ //
 const EMPTY = "EMPTY", SHOW = "SHOW", CREATE = "CREATE", 
@@ -41,7 +46,7 @@ export default function Appointment( props ) {
             Message: ${ err.response.statusText }` 
         transition( ERROR_SAVE, true )
       });
-  };
+  }; // USED TO SAVE THE FORM INPUT (ADDING, EDITING)
 
   const destroy = () => {
     transition( REMOVING, true )
@@ -54,7 +59,7 @@ export default function Appointment( props ) {
             Message: ${err.response.statusText}`
         transition( ERROR_DELETE, true )
       });
-  };
+  }; // USED TO DELETE AN EXISTING APPOINTMENT
 
   return (
     <article className="appointment" data-testid="appointment">
@@ -111,4 +116,4 @@ export default function Appointment( props ) {
       )}
     </article>
   );
-}
+};

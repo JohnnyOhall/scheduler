@@ -1,6 +1,10 @@
-import React from "react";
+/*
+CONFIRM COMPONENT: THIS COMPONENT IS USED TO CONFIRM A DELETION REQUEST
+*/
 
-import Button from "components/Button";
+import React from "react"; // EXTERNAL IMPORTS
+
+import Button from "components/Button"; // COMPONENT IMPORTS
 
 export default function Confirm( props ) {
   const { message, onConfirm, onCancel } = props;
@@ -14,4 +18,4 @@ export default function Confirm( props ) {
       </section>
     </main>
   );
-}
+};

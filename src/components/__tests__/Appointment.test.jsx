@@ -6,5 +6,5 @@ import Appointment from "components/Appointment";
 
 // it === test & to skip its either xit || skip.test
 xit("renders without crashing", () => { //A test that renders a React Component
-  render(<Appointment />);
+  render( <Appointment /> );
 });

@@ -1,4 +1,9 @@
-import React from "react";
+/*
+ERROR COMPONENT: THIS COMPONENT IS USED TO DISPLAY WHEN AN ERROR IS
+  RECIEVED DURING A DELETE OR EDIT OR ADD.
+*/
+
+import React from "react"; // EXTERNAL IMPORTS
 
 export default function Error( props ) {
   const { message, onClose, type } = props;
@@ -17,4 +22,4 @@ export default function Error( props ) {
       />
     </main>
   );
-}
+};

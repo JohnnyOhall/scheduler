@@ -1,6 +1,11 @@
-import React from "react";
+/*
+DAYLIST COMPONENT: USED TO POPULATE THE DATA INSIDE EACH DAY ON
+  THE NAV BAR.
+*/
 
-import DayListItem from "./DayListItem";
+import React from "react"; // EXTERNAL IMPORTS
+
+import DayListItem from "./DayListItem"; // COMPONENT IMPORTS
 
 export default function DayList( props ) {
   const listItem = props.days.map( day => {
@@ -18,5 +23,5 @@ export default function DayList( props ) {
     )
   })
 
-  return <ul>{listItem}</ul>;
+  return <ul>{ listItem }</ul>;
 }
