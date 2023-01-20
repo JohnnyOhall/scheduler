@@ -17,7 +17,8 @@ export default function useVisualMode( initial ) {
 
     setHistory([ ...history, mode ]);
     return setMode( mode );
-  };
+  }; // Allows for transition from previous state to new state
+  // as well as setting history (and skipping on error states)
 
   const back = () => {
     const pop = history => {
@@ -31,7 +32,7 @@ export default function useVisualMode( initial ) {
 
     setHistory( newHistory );
     return setMode( newHistory[ newHistory.length - 1 ] );
-  };
+  }; // Allows application to transition to previous prop
   
   return { mode, transition, back };
 };

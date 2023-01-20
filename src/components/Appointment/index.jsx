@@ -44,7 +44,7 @@ export default function Appointment( props ) {
         errorMsg = 
           `Error Code: ${ err.response.status }, 
             Message: ${ err.response.statusText }` 
-        transition( ERROR_SAVE, true )
+        transition( ERROR_SAVE )
       });
   }; // USED TO SAVE THE FORM INPUT (ADDING, EDITING)
 

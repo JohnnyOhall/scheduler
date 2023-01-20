@@ -58,8 +58,7 @@ export default function useApplicationData() {
       appointments, 
       days: updateSpots( appointments, id ) 
     }));
-  };
-  
+  }; // Books new interview in available time slot and pushes to db
 
   const cancelInterview = id => {
     const appointment = {
@@ -79,7 +78,7 @@ export default function useApplicationData() {
         days: updateSpots( appointments, id ) 
       })
     );
-  };
+  }; // cancels existing interview and deletes from db
 
   return { state, setDay, bookInterview, cancelInterview };
 };
